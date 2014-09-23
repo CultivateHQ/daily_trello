@@ -1,0 +1,2 @@
+defmodule DailyTrello do
+end
