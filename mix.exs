@@ -25,6 +25,8 @@ defmodule DailyTrello.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [
+      {:mock, git: "git@github.com:jjh42/mock.git"}
+    ]
   end
 end
