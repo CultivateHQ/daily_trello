@@ -1,8 +1,6 @@
 
 defmodule DailyTrello.CLI do
 
-
-
   def main(argv) do
     argv
       |> parse_args
@@ -34,7 +32,5 @@ defmodule DailyTrello.CLI do
   def process {:daily_trello, board_ids} do
     DailyTrello.process_boards board_ids
   end
-
-
 
 end
