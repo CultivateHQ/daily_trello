@@ -21,7 +21,15 @@ defmodule DecodeTest do
   test "decodes board list as map of cards to board names" do
     lists = {:board_lists, File.read!("#{__DIR__}/board_list_fixture.json") |> :jsxn.decode}
     result = decode(lists)
-    assert result == %{}
+
+    # Not a great test, as it relies on transforming (the captured) json from another file,
+    # but I'm living with it for now
+    assert result == %{
+      "To Do" => ["Do this", "Do that", "Do the other"],
+      "Doing" => ["Doing this thing", "Doing this other thing"],
+      "For Review" => ["This needs reviewing", "This too needs reviewing"],
+      "Done" => ["Done 1", "Done 2", "Done 3"],
+    }
   end
 
 
