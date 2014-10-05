@@ -2,6 +2,7 @@
 defmodule DailyTrello do
   import DailyTrello.Decode, [only: [decode: 1]]
   import DailyTrello.Fetch, [only: [fetch: 1]]
+  require EEx
 
   defmodule DailyBoard do
     defstruct name: "",
@@ -16,10 +17,15 @@ defmodule DailyTrello do
 
 
   end
+
+  EEx.function_from_file :def, :board_output, "#{__DIR__}/eex/board.eex", [:board]
+
+
+
   def process_boards board_ids do
     board_ids
     |> Enum.map(fn(id) -> process_board(id) end)
-    |> inspect
+    |> Enum.map(fn(board) -> board_output(board) end)
     |> IO.puts
   end
 
@@ -36,7 +42,8 @@ defmodule DailyTrello do
       doing: board_lists["Doing"],
       for_review: board_lists["For Review"],
       done: board_lists["Done"]
-
     }
   end
+
+
 end

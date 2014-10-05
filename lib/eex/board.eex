@@ -1,0 +1,24 @@
+<%= board.name %>
+<%= String.duplicate("=", String.length(board.name)) %>
+
+Summary
+-------
+
+Total todo:           <%= board.todo |> length %>
+Total in progress:    <%= board.doing |> length %>
+Total needing review: <%= board.for_review |> length %>
+Total done:           <%= board.done |> length %>
+
+Doing
+-----
+
+<%= board.doing |> Enum.map(fn (card) -> "* #{card}\n" end) %>
+<%= if length(board.for_review) > 0 do %>Needing review
+--------------
+
+<%= board.for_review |> Enum.map(fn (card) -> "* #{card}\n" end) %>
+<% end %>
+
+
+xxx
+
