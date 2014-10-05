@@ -1,5 +1,9 @@
+defmodule DailyTrello.Card do
+  defstruct name: "", id: ""
+end
 
 defmodule DailyTrello.Decode do
+  alias DailyTrello.Card 
   def decode(error = {:error, _}) do
     error
   end
@@ -13,7 +17,7 @@ defmodule DailyTrello.Decode do
     card_lists
         |> Enum.reduce(%{}, fn (card_list, acc) ->
               cards = card_list["cards"] |> Enum.map(fn (card) -> 
-                card["name"]
+                %Card{name: card["name"], id: card["id"]}
               end)
               acc |> Map.put(card_list["name"], cards)
         end)

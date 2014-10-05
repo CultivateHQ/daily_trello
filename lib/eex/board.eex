@@ -12,13 +12,14 @@ Total done:           <%= board.done |> length %>
 Doing
 -----
 
-<%= board.doing |> Enum.map(fn (card) -> "* #{card}\n" end) %>
+<%= board.doing |> Enum.map(fn (card) -> "* #{card.name}\n" end) %>
 <%= if length(board.for_review) > 0 do %>Needing review
 --------------
 
-<%= board.for_review |> Enum.map(fn (card) -> "* #{card}\n" end) %>
+<%= board.for_review |> Enum.map(fn (card) -> "* #{card.name}\n" end) %>
 <% end %>
 
+Done Today
+----------
 
-xxx
-
+<%= board.done_today |> Enum.map(fn (card) -> "* #{card.name}\n" end) %>

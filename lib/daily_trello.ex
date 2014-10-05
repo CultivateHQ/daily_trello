@@ -33,7 +33,7 @@ defmodule DailyTrello do
   def process_board(board_id) do
     board_name = fetch({:board_name, {board_id}})   |> decode
     board_lists = fetch({:board_lists, {board_id}}) |> decode
-    {board_name, board_lists}
+    done_today = filter_done_today(board_lists)
     %DailyBoard{
       name: board_name,
       id: board_id,
@@ -41,8 +41,13 @@ defmodule DailyTrello do
       todo: board_lists["To Do"],
       doing: board_lists["Doing"],
       for_review: board_lists["For Review"],
-      done: board_lists["Done"]
+      done: board_lists["Done"],
+      done_today: done_today,
     }
+  end
+
+  def filter_done_today(%{"Done" => done}) do
+    [done |> List.first]  
   end
 
 

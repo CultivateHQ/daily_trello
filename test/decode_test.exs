@@ -25,11 +25,16 @@ defmodule DecodeTest do
     # Not a great test, as it relies on transforming (the captured) json from another file,
     # but I'm living with it for now
     assert result == %{
-      "To Do" => ["Do this", "Do that", "Do the other"],
-      "Doing" => ["Doing this thing", "Doing this other thing"],
-      "For Review" => ["This needs reviewing", "This too needs reviewing"],
-      "Done" => ["Done 1", "Done 2", "Done 3"],
+      "To Do" => [%DailyTrello.Card{id: "54300b2d28958ff2f0400aed", name: "Do this"}, %DailyTrello.Card{id: "54300b2fe1cb63546e457498", name: "Do that"}, %DailyTrello.Card{id: "54300b341079b25d6a450e11", name: "Do the other"}],
+      "Doing" => [%DailyTrello.Card{id: "54300b41cbe74395ecc59c46", name: "Doing this thing"}, %DailyTrello.Card{id: "54300b465dedf01818cb93c4", name: "Doing this other thing"}],
+      "For Review" => [%DailyTrello.Card{id: "54300b550e0eff57ec7409ea", name: "This needs reviewing"}, %DailyTrello.Card{id: "54300b5cece07847ec067a56", name: "This too needs reviewing"}],
+      "Done" => [%DailyTrello.Card{id: "54300b6b176dafc4941e3e4b", name: "Done 1"}, %DailyTrello.Card{id: "54300b6dd8242abb6c9d7c0d", name: "Done 2"}, %DailyTrello.Card{id: "54300b6f5c9beade177d7561", name: "Done 3"}],
     }
+    
+    
+    
+    
+
   end
 
 
