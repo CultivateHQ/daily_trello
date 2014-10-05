@@ -14,7 +14,7 @@ defmodule FetchTest do
   end
 
   test "good response" do
-    assert handle_response(%{status_code: 200, body: " {\"_value\":\"A thing\"} "}, :board_name) ==  {:board_name, [{"_value", "A thing"}]}
+    assert handle_response(%{status_code: 200, body: " {\"_value\":\"A thing\"} "}, :board_name) ==  {:board_name, %{"_value" => "A thing"}}
   end
 
 

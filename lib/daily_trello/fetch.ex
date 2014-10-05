@@ -15,7 +15,7 @@ defmodule DailyTrello.Fetch do
   end
 
   def handle_response(%{status_code: 200, body: body}, request_type) do
-    {request_type, :jsx.decode(body) }
+    {request_type, :jsxn.decode(body) }
   end
 
   def handle_response(%{status_code: status_code, body: body}, _) do
