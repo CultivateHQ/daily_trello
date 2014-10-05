@@ -9,7 +9,7 @@ defmodule DecodeTest do
   end
 
   test "decodes repository name" do
-     assert decode({:board_name, [{"_value", "ExampleBoard"}]}) == {:ok, "ExampleBoard"}
+     assert decode({:board_name, %{"_value" => "ExampleBoard"}}) == "ExampleBoard"
   end
 
 

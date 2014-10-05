@@ -4,8 +4,8 @@ defmodule DailyTrello.Decode do
     error
   end
 
-  def decode({:board_name, [{"_value", name}]}) do
-    {:ok, name}
+  def decode({:board_name, %{"_value" => name}}) do
+    name
   end
 
 
