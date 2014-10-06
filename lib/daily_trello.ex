@@ -47,7 +47,24 @@ defmodule DailyTrello do
   end
 
   def filter_done_today(%{"Done" => done}) do
-    [done |> List.first]  
+    for card <- done, card |> card_moved_to_list_name_on_day?(:erlang.date, "Done"), do: card
+
+  end
+
+  def card_moved_to_list_name_on_day?(card, day,  list_name) do
+    fetch({:card_list_changes, {card.id}}) 
+      |> decode
+      |> date_and_list_names_contains_match?(day, list_name)
+  end
+
+
+  def date_and_list_names_contains_match?(date_and_list_names, {year, month, day}, list_name) do
+    comparison_date = :io_lib.format("~4..0B-~2..0B-~2..0B", [year, month, day]) |> List.flatten |> to_string
+    date_and_list_names 
+        |>  Enum.find(fn ({action_date_time, action_list_name}) ->
+          action_date = action_date_time |> String.slice(0..9)
+          action_list_name == list_name && action_date == comparison_date
+        end) != nil
   end
 
 

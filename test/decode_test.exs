@@ -30,11 +30,17 @@ defmodule DecodeTest do
       "For Review" => [%DailyTrello.Card{id: "54300b550e0eff57ec7409ea", name: "This needs reviewing"}, %DailyTrello.Card{id: "54300b5cece07847ec067a56", name: "This too needs reviewing"}],
       "Done" => [%DailyTrello.Card{id: "54300b6b176dafc4941e3e4b", name: "Done 1"}, %DailyTrello.Card{id: "54300b6dd8242abb6c9d7c0d", name: "Done 2"}, %DailyTrello.Card{id: "54300b6f5c9beade177d7561", name: "Done 3"}],
     }
-    
-    
-    
-    
+  end
 
+
+  test "pulls out date and list to which moved, from actions" do
+    trello_output = [
+      %{"date" => "2014-10-45T14:58:34.122Z", "data" => %{"listAfter" => %{"name" => "Doing"}}},
+      %{"date" => "2014-11-45T14:58:34.122Z", "data" => %{"listAfter" => %{"name" => "Doing"}}},
+      %{"date" => "2014-12-45T14:58:34.122Z", "data" => %{"listAfter" => %{"name" => "Done"}}},
+      ]
+
+    assert decode({:card_list_changes, trello_output}) == [{"2014-10-45T14:58:34.122Z", "Doing"}, {"2014-11-45T14:58:34.122Z", "Doing"}, {"2014-12-45T14:58:34.122Z", "Done"}]
   end
 
 
