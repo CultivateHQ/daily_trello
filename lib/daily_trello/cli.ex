@@ -23,7 +23,8 @@ defmodule DailyTrello.CLI do
 
   def process :help do
     IO.puts :stderr, """
-    usage: daily_trello board1id [other board ids]
+    usage: daily_trello [-k key -t token] board1id [other board ids]
+           If key and token are not provided, then will attempt to use the environment variables $TRELLO_KEY AND $TRELLO_TOKEN.
     """
   end
 

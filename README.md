@@ -15,8 +15,10 @@ Output is to standard out.
 # Calling
 
 ```
-dailytrello [comma separated board ids]
+daily_trello [-k key -t token] board1id [other board ids]
 ```
+
+If key and token are not provided, then will attempt to use the environment variables $TRELLO_KEY AND $TRELLO_TOKEN.
 
 
 # Implementation
