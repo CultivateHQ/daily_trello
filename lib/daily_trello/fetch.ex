@@ -4,10 +4,6 @@ defmodule DailyTrello.Fetch do
   @base_url "https://trello.com/1"
 
 
-  def fetch(command) do
-    fetch command, env_credentials
-  end
-
   def fetch(command = {request_type, _}, credentials) do
     url(command, credentials)
       |> HTTPoison.get(@user_agent)
@@ -22,10 +18,6 @@ defmodule DailyTrello.Fetch do
     {:error, %{status_code: status_code, body: body}}
   end
 
-
-  def env_credentials do
-    {System.get_env("TRELLO_KEY"), System.get_env("TRELLO_TOKEN")}
-  end
 
   def url(command, {key, token}) do
     case command do

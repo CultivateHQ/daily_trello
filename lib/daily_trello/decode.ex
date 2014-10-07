@@ -12,7 +12,6 @@ defmodule DailyTrello.Decode do
     name
   end
 
-
   def decode({:board_lists, card_lists}) do
     card_lists
         |> Enum.reduce(%{}, fn (card_list, acc) ->

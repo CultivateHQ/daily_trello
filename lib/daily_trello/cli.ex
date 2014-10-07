@@ -10,14 +10,13 @@ defmodule DailyTrello.CLI do
   
 
   def parse_args(argv) do
-    parse = OptionParser.parse(argv, 
-    switches: [ help: :boolean],
-    aliases:  [ h: :help])
-
+    parse = OptionParser.parse(argv,
+    aliases: [h: :help, k: :key, t: :token]) 
     case parse do
       {[ help: true], _, _} -> :help
       {_, [], _}            -> :help
-      {_, boards, _}        -> {:daily_trello, boards}
+      {[key: key, token: token], boards, _}        -> {:daily_trello, boards, {key, token}}
+      {_, boards, _}        -> {:daily_trello, boards, env_credentials}
     end
   end
 
@@ -29,8 +28,12 @@ defmodule DailyTrello.CLI do
   end
 
 
-  def process {:daily_trello, board_ids} do
-    DailyTrello.process_boards board_ids
+  def process {:daily_trello, board_ids, credentials} do
+    DailyTrello.process_boards board_ids, credentials
+  end
+
+  def env_credentials do
+    {System.get_env("TRELLO_KEY"), System.get_env("TRELLO_TOKEN")}
   end
 
 end

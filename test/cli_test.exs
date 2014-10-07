@@ -13,8 +13,14 @@ defmodule CliTest do
     assert parse_args([]) == :help
   end
 
-  test "board ids returned when board ids are  passed in" do
-    assert parse_args(["12345", "6780"]) == {:daily_trello, ["12345", "6780"]}
+  test "board ids returned when board ids are  passed in, with env variables" do
+    System.put_env(%{"TRELLO_KEY" => "key", "TRELLO_TOKEN" => "token"}) 
+    assert parse_args(["12345", "6780"]) == {:daily_trello, ["12345", "6780"], {"key", "token"}}
+  end
+
+  test "credentials when passed in are used" do
+    assert parse_args(["-k", "Key", "-t", "Token", "12345", "6780"]) == {:daily_trello, ["12345", "6780"], {"Key", "Token"}}
+    assert parse_args(["--key", "Key", "--token", "Token", "12345", "6780"]) == {:daily_trello, ["12345", "6780"], {"Key", "Token"}}
   end
 
 
@@ -26,8 +32,8 @@ defmodule CliTest do
 
   end
 
-  test_with_mock "boards process boards", DailyTrello, [process_boards: fn(boards) -> "#{boards |> inspect} processed" end] do
-    assert process({:daily_trello, ["12345", "23456"]}) == "[\"12345\", \"23456\"] processed"
+  test_with_mock "boards process boards", DailyTrello, [process_boards: fn(boards, credentials) -> "#{boards |> inspect} #{credentials |> inspect} processed" end] do
+    assert process({:daily_trello, ["12345", "23456"], {"k", "t"}}) == "[\"12345\", \"23456\"] {\"k\", \"t\"} processed"
   end
 
 end
