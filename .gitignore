@@ -4,3 +4,4 @@ erl_crash.dump
 *.ez
 .env
 daily_trello
+mas.sh
