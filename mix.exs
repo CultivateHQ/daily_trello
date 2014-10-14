@@ -3,7 +3,7 @@ defmodule DailyTrello.Mixfile do
 
   def project do
     [app: :daily_trello,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.0.0",
      escript: escript_config,
      deps: deps]
