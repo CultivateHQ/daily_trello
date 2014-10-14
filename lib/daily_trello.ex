@@ -24,7 +24,7 @@ defmodule DailyTrello do
 
   def process_boards board_ids, credentials do
     board_ids
-    |> Enum.map(fn(id) -> process_board(id, credentials) end)
+    |> Parallel.pmap(fn(id) -> process_board(id, credentials) end)
     |> Enum.map(fn(board) -> board_output(board) end)
     |> IO.puts
   end
@@ -49,8 +49,14 @@ defmodule DailyTrello do
 
   def filter_done_today(%{"Done" => done}, credentials) do
     IO.puts :stderr, "Checking Done card status"
-    for card <- done, card |> card_moved_to_list_name_on_day?(:erlang.date, "Done", credentials), do: card
-
+    done
+      |> Parallel.pmap(fn(card) ->
+        {card |> card_moved_to_list_name_on_day?(:erlang.date, "Done", credentials), card}
+      end)
+      |> Enum.filter_map(
+        fn({should_include, _}) -> should_include end,
+          fn({_, card}) -> card end
+      )
   end
 
   def card_moved_to_list_name_on_day?(card, day,  list_name, credentials) do
