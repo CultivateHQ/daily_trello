@@ -5,10 +5,16 @@ Summary
 -------
 
 Total todo:           <%= board.todo |> length %>
+Total blocked:        <%= board.blocked |> length %>
 Total in progress:    <%= board.doing |> length %>
 Total needing review: <%= board.for_review |> length %>
 Total done:           <%= board.done |> length %>
 
+<%= if length(board.blocked) > 0 do %>Blocked
+--------------
+
+<%= board.blocked |> Enum.map(fn (card) -> "* #{card.name}\n" end) %>
+<% end %>
 Doing
 -----
 
