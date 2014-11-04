@@ -11,7 +11,8 @@ defmodule DailyTrello do
               todo: [],
               blocked: [],
               doing: [],
-              for_review: [],
+              pr_submitted: [],
+              ready_for_signoff: [],
               done: [],
               done_today: []
 
@@ -43,7 +44,8 @@ defmodule DailyTrello do
       todo: board_lists["To Do"] || [],
       blocked: board_lists["Blocked"] || [],
       doing: board_lists["Doing"] || [],
-      for_review: board_lists["For Review"] || [],
+      pr_submitted: board_lists["Pull Request Submitted"] || [],
+      ready_for_signoff: board_lists["Ready for Sign-off"] || [],
       done: board_lists["Done"] || [],
       done_today: done_today || [],
     }

@@ -8,15 +8,14 @@
 Summary
 -------
 
-Total todo:           <%= board.todo |> length %>
-Total blocked:        <%= board.blocked |> length %>
-Total in progress:    <%= board.doing |> length %>
-Total needing review: <%= board.for_review |> length %>
-Total done:           <%= board.done |> length %>
+Total todo:        <%= board.todo |> length %>
+Total in progress: <%= [board.blocked, board.doing, board.pr_submitted, board.ready_for_signoff] |> Enum.map(fn l -> length(l) end) |>  Enum.sum %>
+Total done:        <%= board.done |> length %>
 
 
 <%= display_cards("Blocked", board.blocked) %>
 <%= display_cards("Doing", board.doing) %>
-<%= display_cards("Needing Review", board.for_review) %>
+<%= display_cards("Pull Request Submitted", board.pr_submitted) %>
+<%= display_cards("Ready for Sign-off", board.ready_for_signoff) %>
 <%= display_cards("Done Today", board.done_today) %>
 
