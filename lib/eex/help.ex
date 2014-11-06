@@ -19,4 +19,19 @@ defmodule DailyTrello.Eex.Help do
     """
   end
 
+
+  def display_queues(queues) do
+    queues 
+    |> Enum.map(fn {name, cards} ->
+      display_cards(name, cards)
+    end)
+      |> Enum.filter(fn text ->
+        text != ""
+      end)
+    |> Enum.join("\n")
+      
+
+
+  end
+
 end

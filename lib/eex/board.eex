@@ -12,11 +12,11 @@ Total todo:        <%= board.todo |> length %>
 Total in progress: <%= [board.blocked, board.doing, board.pr_submitted, board.ready_for_signoff] |> Enum.map(fn l -> length(l) end) |>  Enum.sum %>
 Total done:        <%= board.done |> length %>
 
-
-<%= display_cards("For Triage", board.for_triage) %>
-<%= display_cards("Blocked", board.blocked) %>
-<%= display_cards("Doing", board.doing) %>
-<%= display_cards("Pull Request Submitted", board.pr_submitted) %>
-<%= display_cards("Ready for Sign-off", board.ready_for_signoff) %>
-<%= display_cards("Done Today", board.done_today) %>
+<%= display_queues([{"For Triage", board.for_triage}, 
+                    {"Blocked", board.blocked},
+                    {"Doing", board.doing},
+                    {"Pull Request Submitted", board.pr_submitted},
+                    {"Ready for Sign-off", board.ready_for_signoff},
+                    {"Done Today", board.done_today},
+                    ])%>
 

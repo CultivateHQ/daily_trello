@@ -32,9 +32,47 @@ defmodule EexHelpTest do
   end
 
 
-  defp a_card_list do
-    ["card 1", "card 2"] |> Enum.map(fn c -> %DailyTrello.Card{name: c} end)
+  test "display multiple queues" do
+    assert display_queues([{"To Do", a_card_list}]) == """
+    To Do
+    -----
+
+    * card 1
+    * card 2
+    """
+    assert display_queues([{"To Do", a_card_list}, {"Doing", a_card_list}]) == """
+    To Do
+    -----
+
+    * card 1
+    * card 2
+
+    Doing
+    -----
+
+    * card 1
+    * card 2
+    """
   end
+
+
+  test "empty queues totally ignored when displaying multiple queues" do
+    assert display_queues([{"For Triage", []}, {"To Do", a_card_list}, {"Not", []}]) == """
+    To Do
+    -----
+
+    * card 1
+    * card 2
+    """
+  end
+
+
+  defp a_card_list(list \\ ["card 1", "card 2"]) do
+    list |> Enum.map(fn c -> %DailyTrello.Card{name: c} end)
+  end
+
+
+  
 
 
 end
