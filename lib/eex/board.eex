@@ -13,6 +13,7 @@ Total in progress: <%= [board.blocked, board.doing, board.pr_submitted, board.re
 Total done:        <%= board.done |> length %>
 
 
+<%= display_cards("For Triage", board.for_triage) %>
 <%= display_cards("Blocked", board.blocked) %>
 <%= display_cards("Doing", board.doing) %>
 <%= display_cards("Pull Request Submitted", board.pr_submitted) %>

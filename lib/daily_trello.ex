@@ -14,6 +14,7 @@ defmodule DailyTrello do
               pr_submitted: [],
               ready_for_signoff: [],
               done: [],
+              for_triage: [],
               done_today: []
 
 
@@ -47,6 +48,7 @@ defmodule DailyTrello do
       pr_submitted: board_lists["Pull Request Submitted"] || [],
       ready_for_signoff: board_lists["Ready for Sign-off"] || [],
       done: board_lists["Done"] || [],
+      for_triage: board_lists["For Triage"],
       done_today: done_today || [],
     }
   end
