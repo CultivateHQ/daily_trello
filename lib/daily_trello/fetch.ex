@@ -1,6 +1,6 @@
 
 defmodule DailyTrello.Fetch do
-  @user_agent  [ {"User-agent", "Elixir Cultivate's Daily Trello lolalolalo"} ]
+  @user_agent  [ {"User-agent", "Elixir for Trello"} ]
   @base_url "https://trello.com/1"
 
 
@@ -27,5 +27,5 @@ defmodule DailyTrello.Fetch do
     end
 
   end
-  
+
 end
