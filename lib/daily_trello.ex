@@ -25,19 +25,19 @@ defmodule DailyTrello do
 
 
 
-  def process_boards board_ids, credentials do
+  def process_boards board_ids, credentials, today do
     board_ids
-    |> Parallel.pmap(fn(id) -> process_board(id, credentials) end)
+    |> Parallel.pmap(fn(id) -> process_board(id, credentials, today) end)
     |> Enum.map(fn(board) -> board_output(board) end)
     |> IO.puts
   end
 
 
-  def process_board(board_id, credentials) do
+  def process_board(board_id, credentials, today) do
     board_name = fetch({:board_name, {board_id}}, credentials)   |> decode
     IO.puts :stderr, "Fetching: #{board_name}"
     board_lists = fetch({:board_lists, {board_id}}, credentials) |> decode
-    done_today = filter_done_today(board_lists, credentials)
+    done_today = filter_done_today(board_lists, credentials, today)
     %DailyBoard{
       name: board_name,
       id: board_id,
@@ -53,11 +53,11 @@ defmodule DailyTrello do
     }
   end
 
-  def filter_done_today(%{"Done" => done}, credentials) do
+  def filter_done_today(%{"Done" => done}, credentials, today) do
     IO.puts :stderr, "Checking Done card status"
     done
       |> Parallel.pmap(fn(card) ->
-        {card |> card_moved_to_list_name_on_day?(:erlang.date, "Done", credentials), card}
+        {card |> card_moved_to_list_name_on_day?(today, "Done", credentials), card}
       end)
       |> Enum.filter_map(
         fn({should_include, _}) -> should_include end,
