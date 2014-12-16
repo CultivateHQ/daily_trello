@@ -27,7 +27,7 @@ defmodule DailyTrello.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:mock, git: "git@github.com:jjh42/mock.git"},
+      {:mock, git: "git@github.com:jjh42/mock.git", only: :test},
       { :httpoison, "~> 0.4.2" },
       { :jsxn,      github: "talentdeficit/jsxn"},
     ]
