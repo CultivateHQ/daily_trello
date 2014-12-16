@@ -28,7 +28,7 @@ defmodule DailyTrello.Mixfile do
   defp deps do
     [
       {:mock, git: "git@github.com:jjh42/mock.git"},
-      { :httpoison, "~> 0.3" },
+      { :httpoison, "~> 0.4.2" },
       { :jsxn,      github: "talentdeficit/jsxn"},
     ]
   end

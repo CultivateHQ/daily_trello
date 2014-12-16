@@ -1,5 +1,5 @@
 %{"hackney": {:hex, :hackney, "0.14.3"},
-  "httpoison": {:hex, :httpoison, "0.5.0"},
+  "httpoison": {:hex, :httpoison, "0.4.3"},
   "idna": {:hex, :idna, "1.0.1"},
   "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "c1d794f7a902768f82b4ea83fe082b88b6b5e517", [tag: "v2.3.0"]},
   "jsxn": {:git, "git://github.com/talentdeficit/jsxn.git", "6c1cc75d14499dead9ca2aadc915d9a036607ca9", []},
