@@ -1,8 +1,8 @@
-%{"hackney": {:package, "0.13.1"},
-  "httpoison": {:package, "0.4.2"},
-  "idna": {:package, "1.0.1"},
-  "jsx": {:package, "2.1.1"},
-  "jsxn": {:package, "0.2.1"},
-  "meck": {:git, "git://github.com/eproxus/meck.git", "dde759050eff19a1a80fd854d7375174b191665d", [tag: "0.8.2"]},
-  "mock": {:git, "git@github.com:jjh42/mock.git", "275109db347caf3449b6d123bd4da720fb08b28e", []},
-  "timex": {:package, "0.12.9"}}
+%{"hackney": {:hex, :hackney, "0.14.3"},
+  "httpoison": {:hex, :httpoison, "0.5.0"},
+  "idna": {:hex, :idna, "1.0.1"},
+  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "c1d794f7a902768f82b4ea83fe082b88b6b5e517", [tag: "v2.3.0"]},
+  "jsxn": {:git, "git://github.com/talentdeficit/jsxn.git", "6c1cc75d14499dead9ca2aadc915d9a036607ca9", []},
+  "meck": {:hex, :meck, "0.8.2"},
+  "mock": {:git, "git@github.com:jjh42/mock.git", "5d643b66da59e986d656d0f5e6dff789321da4ef", []},
+  "timex": {:hex, :timex, "0.12.9"}}
