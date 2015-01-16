@@ -10,7 +10,7 @@ defmodule FetchTest do
 
   test "urls" do
     assert url({:board_name,  {"1234"}}, @credentials) == "https://trello.com/1/boards/1234/name?key=mykey&token=mytoken"
-    assert url({:board_lists, {"1234"}}, @credentials) == "https://trello.com/1/boards/1234/lists?cards=open&card_fields=name&key=mykey&token=mytoken"
+    assert url({:board_lists, {"1234"}}, @credentials) == "https://trello.com/1/boards/1234/lists?cards=open&card_fields=name,dateLastActivity&key=mykey&token=mytoken"
     assert url({:card_list_changes, {"cardid"}}, @credentials) == "https://trello.com/1/cards/cardid/actions?filter=updateCard:idList&key=mykey&token=mytoken"
   end
 

@@ -22,7 +22,7 @@ defmodule DailyTrello.Fetch do
   def url(command, {key, token}) do
     case command do
       {:board_name, {board_id}} -> "#{@base_url}/boards/#{board_id}/name?key=#{key}&token=#{token}"
-      {:board_lists,{board_id}} -> "#{@base_url}/boards/#{board_id}/lists?cards=open&card_fields=name&key=#{key}&token=#{token}"
+      {:board_lists,{board_id}} -> "#{@base_url}/boards/#{board_id}/lists?cards=open&card_fields=name,dateLastActivity&key=#{key}&token=#{token}"
       {:card_list_changes,{card_id}} -> "#{@base_url}/cards/#{card_id}/actions?filter=updateCard:idList&key=#{key}&token=#{token}"
     end
 
