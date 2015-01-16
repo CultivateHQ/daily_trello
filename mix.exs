@@ -30,6 +30,7 @@ defmodule DailyTrello.Mixfile do
       {:mock, git: "git@github.com:jjh42/mock.git", only: :test},
       { :httpoison, "~> 0.4.2" },
       { :jsxn,      github: "talentdeficit/jsxn"},
+      {:timex, "~> 0.13.3"},
     ]
   end
 
